@@ -1,0 +1,20 @@
+This program demonstrates a very simple perceptron learning algorithm.
+First a line is randomly drawn in a [-1, 1] x [-1, 1] space.
+Then N points (the first parameter of function main) are randomly generated
+and assigned a value of either -1 or 1 by the target function depending
+on whether or not they fall above or below the line. The PLA iterates
+num_exp times (the second paramter of function main), and during each
+iteration the weight vector is adjusted as W:= W + y_n'*X, where w is the
+weight vector, y_n is the transverse of a vector consisting of the output 
+of the target function, and X is a vector consisting of input points (i.e.
+vector X = [x0; x1; x2] where x0 = 1.
+
+To run, enter the following commands:
+octave
+source coordinates.m
+source main.m
+main(10,1)
+
+The first parameter of main is N. The second parameter is the number 
+of experiments to run.
+
