@@ -1,0 +1,71 @@
+function nonlinear_transf(num_points)
+
+N = num_points;
+NUM_EXP = 1000;
+
+for r=1:N,
+
+# coordinates are generated in the form  [x0, x, y] where x0 = 1 
+
+[x0, x, y] = generateCoords();
+onex = [x0 x y];
+[x0, x, y] = generateCoords();
+twox = [x0 x y];
+
+#m = (twox(1,3) - onex(1,3)) / ( twox(1,2) - onex(1,2) );
+#b = onex(1,3) - m*onex(1,2);
+
+points = [];
+
+for i=1:N,
+	[a, b, c] = generateCoords;
+	temp_point = [a b c];
+	points = [points; temp_point];
+
+	actual_y = generateOutput(b,c);
+
+	y = [y;actual_y]; 
+
+end;
+
+#calculate weight vector using linear regression (normal equation method)
+w = (pinv(points' * points)*points')*y;
+
+#disp("Weight vector (g) = ");
+#disp(w);
+
+#Now generate 1000 new random points, and use vector w to populate 
+#'points2' and then compare y coordinates of points2 with that of 'points' 
+
+mismatch = 0;
+
+for i=1:1000,
+	
+	#y_per_g is the y value of each point as predicted by 
+	#hypothesis g (i.e. using weight vector)
+	#points(1,3) is the actual y value of the randomly generated pt
+
+	[u1, u2, u3] = generateCoords();
+	random_pt = [u1 u2 u3];
+	
+       y_per_g = random_pt*w; 	
+       y_per_f = generateOutput(u2,u3);
+
+       if y_per_g*y_per_f <0,
+	       mismatch = mismatch + 1;
+       end;
+
+end;
+	 	
+E_in = mismatch/1000;
+
+Ess = [Ess; E_in];
+
+end; #close outermost for loop
+
+average = sum(Ess)/NUM_EXP;
+
+printf("Average E_out = %0.6f\n",average);
+
+endfunction;
+
