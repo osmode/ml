@@ -126,9 +126,9 @@ cvdata, trndata = DS.splitWithProportion(00.2)
 
 # the _convertToOneOfMany method
 DS._convertToOneOfMany(bounds=[0,1])
-test_DS._convertToOneOfMany()
-cvdata._convertToOneOfMany()
-trndata._convertToOneOfMany()
+test_DS._convertToOneOfMany(bounds=[0,1])
+cvdata._convertToOneOfMany(bounds=[0,1])
+trndata._convertToOneOfMany(bounds=[0,1])
 
 trainer = BackpropTrainer(net, dataset=trndata,momentum=0.1,verbose=True, weightdecay=0.01)
 
