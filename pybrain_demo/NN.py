@@ -94,7 +94,7 @@ num_test = len(test_data)
 # of pixels; two hidden units with 1000 units, and 10 output units
 # default is sigmoid hidden units and linear input/ouput units
 # very important to specify outclass=SoftmaxLayer
-net = buildNetwork(len(features[1]),300,300,10,outclass=SoftmaxLayer)
+net = buildNetwork(len(features[1]),300,100,10,outclass=SoftmaxLayer)
 print "number of inputs m: ",num_input
 
 # initialize two classification data sets, one for training
@@ -109,7 +109,7 @@ i = 0
 # 10000 training cases into the NN for training, for speed
 # and demonstration purposes. For real training, use 
 # while i < num_input:
-while i < 10000:
+while i < 1000:
 	DS.appendLinked(features[i], targets[i])
 	i+=1
 i = 0
@@ -122,13 +122,13 @@ while i < 50:
 
 # split up the classification data set 'DS' into training
 # and cross-validation sets
-cvdata, trndata = DS.splitWithProportion(00.2)
+cvdata, trndata = DS.splitWithProportion(0.2)
 
 # the _convertToOneOfMany method
 DS._convertToOneOfMany(bounds=[0,1])
-test_DS._convertToOneOfMany()
-cvdata._convertToOneOfMany()
-trndata._convertToOneOfMany()
+test_DS._convertToOneOfMany(bounds=[0,1])
+cvdata._convertToOneOfMany(bounds=[0,1])
+trndata._convertToOneOfMany(bounds=[0,1])
 
 trainer = BackpropTrainer(net, dataset=trndata,momentum=0.1,verbose=True, weightdecay=0.01)
 
