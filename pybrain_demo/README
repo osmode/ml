@@ -1,0 +1,17 @@
+NN.py is a simple demonstration of the pybrain library
+(www.pybrain.org). A deep neural network is learned using the
+MNIST digits (downloaded from the Kaggle Digit Recognition 
+competition website, which has these data as csv files). Then
+the test data are fed into the neural network in order to make
+digit predictions.
+
+This code intentionally does not make use of python's csv
+function library and is written simplistically in order
+to keep the focus on the pybrain library, especially the
+data set classes, which might throw off new pybrain users.
+
+This is an example of classification and classification data sets.
+Pybrain is a great library that can do much more, so check it 
+out as well as the official documentation.
+
+
